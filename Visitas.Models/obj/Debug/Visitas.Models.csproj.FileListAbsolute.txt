@@ -1,0 +1,11 @@
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Models\bin\Debug\Visitas.Models.dll
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Models\bin\Debug\Visitas.Models.pdb
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Models\bin\Debug\Dapper.Contrib.dll
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Models\bin\Debug\Dapper.dll
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Models\bin\Debug\Dapper.xml
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Models\bin\Debug\Dapper.Contrib.xml
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Models\obj\Debug\Visitas.Models.csprojAssemblyReference.cache
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Models\obj\Debug\Visitas.Models.csproj.CoreCompileInputs.cache
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Models\obj\Debug\Visitas.Models.csproj.CopyComplete
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Models\obj\Debug\Visitas.Models.dll
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Models\obj\Debug\Visitas.Models.pdb

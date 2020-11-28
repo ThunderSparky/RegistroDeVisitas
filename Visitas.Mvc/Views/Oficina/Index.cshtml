@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Visitas.Models.Oficinas>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<center>
+<h2 class="blue">Oficinas</h2>
+</center>
+@Messages.AlertMessages()
+
+<p>
+    @*no colocamos nada en el href, porque lo que hará es llamar un evento*@
+    @*.getModal = lo que hace es activar en la pantalla el modal, y lo que va dentro del parentesis lo que hace es llamar a la accion*@
+    <a href="#" onclick="visitas.getModal('@Url.Action("Create")'); return false;" ;
+       data-toggle="modal" data-target="#modal-container" class="btn btn-success btn-sm">
+        Nuevo <span class="glyphicon glyphicon-plus"></span>
+    </a>
+</p>
+
+<div class="pagination"></div>
+<div class="content"></div>
+<div class="pagination"></div>
+
+@*Con esto llamamos a una vista parcial*@
+@*@Html.Partial("_List")*@
+
+@Modal.GetModal("Oficina")
+
+<script src="~/Scripts/jquery.bootpag.min.js"></script>
+<script src="~/App_JS/visitas.js" type="text/javascript"></script>
+<script src="~/App_JS/oficina.js" type="text/javascript"></script>

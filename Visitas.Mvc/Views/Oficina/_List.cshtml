@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Visitas.Models.Oficinas>
+
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Sede)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Co_Oficina)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.No_Oficina)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jefe_Oficina)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sede)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Co_Oficina)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.No_Oficina)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Jefe_Oficina)
+                </td>
+                <td>
+                    <a href="#" onclick="visitas.getModal('@Url.Action("Edit", new { id = item.Id})'); return false;"
+                       data-toggle="modal" data-target="#modal-container" class="btn btn-warning btn-sm">
+                        <span class="glyphicon glyphicon-edit"></span> Edit
+                    </a>
+                    <a href="#" onclick="visitas.getModal('@Url.Action("Details", new { id = item.Id})'); return false;"
+                       data-toggle="modal" data-target="#modal-container" class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-plus"></span> Details
+                    </a>
+                    <a href="#" onclick="visitas.getModal('@Url.Action("Delete", new { id = item.Id})'); return false;"
+                       data-toggle="modal" data-target="#modal-container" class="btn btn-danger btn-sm">
+                        <span class="glyphicon glyphicon-trash"></span> Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

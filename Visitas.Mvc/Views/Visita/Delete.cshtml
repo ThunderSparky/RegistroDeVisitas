@@ -1,0 +1,88 @@
+﻿@model Visitas.Models.Visitass
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Visitass</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fe_Registro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fe_Registro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Co_Pase)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Co_Pase)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fe_Ingreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fe_Ingreso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fe_Salida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fe_Salida)
+        </dd>
+               
+        <dt>
+            @Html.DisplayNameFor(model => model.No_Lugar_Reunion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.No_Lugar_Reunion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Motivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Motivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VisitanteId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VisitanteId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrabajadorId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrabajadorId)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

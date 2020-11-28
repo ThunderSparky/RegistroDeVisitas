@@ -1,0 +1,106 @@
+﻿@model Visitas.Models.Visitass
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Visitass</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fe_Registro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fe_Registro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Co_Pase)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Co_Pase)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fe_Ingreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fe_Ingreso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fe_Salida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fe_Salida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.No_Usuario_Registro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.No_Usuario_Registro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.No_Usuario_Modificación)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.No_Usuario_Modificación)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.No_Lugar_Reunion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.No_Lugar_Reunion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Motivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Motivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.No_Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.No_Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VisitanteId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VisitanteId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrabajadorId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrabajadorId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,106 @@
+﻿@model Visitas.Models.Institutos
+
+<center>
+    <h2 class="marron">Eliminar</h2>
+</center>
+
+<center>
+    <h3 class="rojo">¿Estás seguro de eliminar este instituto?</h3>
+</center>
+
+<div class="form-horizontal">
+    <hr />
+    <div class="form-group">
+        <div class="col-md-4">
+            <strong>
+                @Html.DisplayNameFor(model => model.No_Instituto)
+            </strong>
+        </div>
+        <div class="col-md-8">
+            @Html.DisplayFor(model => model.No_Instituto)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-4">
+            <strong>
+                @Html.DisplayNameFor(model => model.De_Instituto)
+            </strong>
+        </div>
+        <div class="col-md-8">
+            @Html.DisplayFor(model => model.De_Instituto)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-4">
+            <strong>
+                @Html.DisplayNameFor(model => model.Tipo_Documento)
+            </strong>
+        </div>
+        <div class="col-md-8">
+            @Html.DisplayFor(model => model.Tipo_Documento)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-4">
+            <strong>
+                @Html.DisplayNameFor(model => model.Nu_Documento)
+            </strong>
+        </div>
+        <div class="col-md-8">
+            @Html.DisplayFor(model => model.Nu_Documento)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-4">
+            <strong>
+                @Html.DisplayNameFor(model => model.Imagen)
+            </strong>
+        </div>
+        <div class="col-md-8">
+            @Html.DisplayFor(model => model.Imagen)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-4">
+            <strong>
+                @Html.DisplayNameFor(model => model.Estado)
+            </strong>
+        </div>
+        <div class="col-md-8">
+            @Html.DisplayFor(model => model.Estado)
+        </div>
+    </div>
+
+    @*(Acion , el controlador donde se ubica el action que llamaremos)*@
+    @using (Ajax.BeginForm("Delete", new { Controller = "Instituto" },
+            new AjaxOptions
+            {
+                HttpMethod = "POST", //Indicamos el tipo del metodo, sea POST O GET
+        InsertionMode = InsertionMode.Replace, // En caso exista, insercion de codigo HTML
+        UpdateTargetId = "modal-body", //Este modal-body, esta dentro de la estructura del modal que hemos creado
+        OnSuccess = "instituto.success('delete')" //En el caso de existó, llamaremos a esa funcion de Javascript
+    },
+            htmlAttributes: new { id = "deleteForm" } /*indicamos todos los atributos que puede tener*/)
+            )
+    {
+        @Html.AntiForgeryToken()
+
+        <center>
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" />
+            </div>
+        </center>
+    }
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $.validator.unobtrusive.parse("#deleteForm");//(dentro del parentesis va el id que hemos colocado al inicio)
+    })
+</script>
+

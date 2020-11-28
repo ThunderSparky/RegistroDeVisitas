@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Visitas.Models.Institutos>
+
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.No_Instituto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo_Documento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nu_Documento)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.No_Instituto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tipo_Documento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nu_Documento)
+                </td>
+                <td>
+                    <a href="#" onclick="visitas.getModal('@Url.Action("Edit", new { id = item.Id})'); return false;"
+                       data-toggle="modal" data-target="#modal-container" class="btn btn-warning btn-sm">
+                        <span class="glyphicon glyphicon-edit"></span> Edit
+                    </a>
+                    <a href="#" onclick="visitas.getModal('@Url.Action("Details", new { id = item.Id})'); return false;"
+                       data-toggle="modal" data-target="#modal-container" class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-plus"></span> Details
+                    </a>
+                    <a href="#" onclick="visitas.getModal('@Url.Action("Delete", new { id = item.Id})'); return false;"
+                       data-toggle="modal" data-target="#modal-container" class="btn btn-danger btn-sm">
+                        <span class="glyphicon glyphicon-trash"></span> Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+

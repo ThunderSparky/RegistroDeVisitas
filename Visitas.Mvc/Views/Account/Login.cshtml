@@ -1,0 +1,61 @@
+﻿@model Visitas.Mvc.Models.UserViewModel
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2 class="blue">Login</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <center>
+        <div class="form-horizontal login" id="contenedorprin">
+            <h4 class="marron">Ingrese sus credenciales</h4>
+            <hr /> @*Nos hace una linea en toda la pantalla*@
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-offset-3 col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(Model => Model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-offset-3 col-md-2" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(Model => Model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-5 col-md-3">
+                    <input type="submit" value="Login" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.ActionLink("¿No tienes usuario? Registrate!", "Register", "Account")
+        </div>
+    </center>
+
+    @section Scripts{
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+}
+
+<script type='text/javascript'></script>
+<script>
+    $('#contenedorprin').on('mouseenter', ponercolor);
+    $('#contenedorprin').on('mouseleave', quitarcolor);
+
+    function ponercolor() {
+        $('#contenedorprin').addClass('fondowhitesmoke');
+    }
+    function quitarcolor() {
+        $('#contenedorprin').removeClass('fondowhitesmoke');
+    }
+</script>

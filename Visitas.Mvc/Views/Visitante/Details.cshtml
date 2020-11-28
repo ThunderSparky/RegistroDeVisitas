@@ -1,0 +1,74 @@
+﻿@model Visitas.Models.Visitantes
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Visitantes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.No_Visitante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.No_Visitante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ap_Paterno_Visitante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ap_Paterno_Visitante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ap_Materno_Visitante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ap_Materno_Visitante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo_Documento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo_Documento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nu_Documento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nu_Documento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Imagen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Imagen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InstitutoId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InstitutoId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

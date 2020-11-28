@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<div class="jumbotron FondoBlanco">
+    <h2 class="blue">Bienvenido al Sistema de Registro de Visitas</h2>
+    <p class="lead">Buenas @User.Identity.Name</p>
+
+    <div class="row">
+        <div class="col-md-6 cuadro1" id="divuno">
+            <h2 class="marron">¿Qué es?</h2>
+            <p>
+                El Registro de Visitas es una plataforma informática que difunde información sobre las visitas que realizan las personas
+                a los empleados públicos de la Presidencia del Consejo de Ministros para propiciar una cultura de escrutinio en la sociedad.
+            </p>
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-5">
+            <img src="~/Imagenes/papelera.jpg" alt="Imagen" id="imagenpe" />
+        </div>
+    </div>
+</div>
+
+<script type='text/javascript'></script>
+<script>
+    $('#divuno').on('click', aumentaruno);
+    $('#divuno').on('mouseleave', disminuiruno);
+
+    function aumentaruno() {
+        $('#imagenpe').addClass('hidden');
+        $('#divuno').animate({ 'width': '100%' });
+    }
+    function disminuiruno() {
+        $('#divuno').animate({ 'width': '525px' });
+        $('#imagenpe').removeClass('hidden');
+    }
+</script>

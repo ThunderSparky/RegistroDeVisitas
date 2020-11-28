@@ -1,0 +1,17 @@
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories.Dapper\bin\Debug\Visitas.Repositories.Dapper.dll
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories.Dapper\bin\Debug\Visitas.Repositories.Dapper.pdb
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories.Dapper\bin\Debug\Dapper.Contrib.dll
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories.Dapper\bin\Debug\Dapper.dll
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories.Dapper\bin\Debug\Visitas.Models.dll
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories.Dapper\bin\Debug\Visitas.Repositories.dll
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories.Dapper\bin\Debug\Visitas.UnitOfWork.dll
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories.Dapper\bin\Debug\Visitas.Models.pdb
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories.Dapper\bin\Debug\Visitas.Repositories.pdb
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories.Dapper\bin\Debug\Visitas.UnitOfWork.pdb
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories.Dapper\bin\Debug\Dapper.xml
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories.Dapper\bin\Debug\Dapper.Contrib.xml
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories.Dapper\obj\Debug\Visitas.Repositories.Dapper.csprojAssemblyReference.cache
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories.Dapper\obj\Debug\Visitas.Repositories.Dapper.csproj.CoreCompileInputs.cache
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories.Dapper\obj\Debug\Visitas.Repositories.Dapper.csproj.CopyComplete
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories.Dapper\obj\Debug\Visitas.Repositories.Dapper.dll
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories.Dapper\obj\Debug\Visitas.Repositories.Dapper.pdb

@@ -1,0 +1,80 @@
+﻿@model Visitas.Models.Oficinas
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>¿Estás seguro de eliminar esta oficina?</h3>
+<div>
+    <h4>Oficina:</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Sede)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sede)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Co_Oficina)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Co_Oficina)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.No_Oficina)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.No_Oficina)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.De_Oficina)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.De_Oficina)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Jefe_Oficina)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Jefe_Oficina)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Imagen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Imagen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

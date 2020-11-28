@@ -1,0 +1,56 @@
+﻿@model Visitas.Models.CargosLaborales
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>¿Estás seguro de eliminar este cargo laboral?</h3>
+<div>
+    <h4>CargosLaborales</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Co_Cargo_Laboral)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Co_Cargo_Laboral)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.No_Cargo_Laboral)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.No_Cargo_Laboral)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.De_Cargo_Laboral)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.De_Cargo_Laboral)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

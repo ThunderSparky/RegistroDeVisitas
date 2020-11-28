@@ -1,0 +1,13 @@
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories\bin\Debug\Visitas.Repositories.dll
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories\bin\Debug\Visitas.Repositories.pdb
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories\bin\Debug\Visitas.Models.dll
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories\bin\Debug\Dapper.Contrib.dll
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories\bin\Debug\Dapper.dll
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories\bin\Debug\Visitas.Models.pdb
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories\bin\Debug\Dapper.Contrib.xml
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories\bin\Debug\Dapper.xml
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories\obj\Debug\Visitas.Repositories.csprojAssemblyReference.cache
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories\obj\Debug\Visitas.Repositories.csproj.CoreCompileInputs.cache
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories\obj\Debug\Visitas.Repositories.csproj.CopyComplete
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories\obj\Debug\Visitas.Repositories.dll
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Repositories\obj\Debug\Visitas.Repositories.pdb

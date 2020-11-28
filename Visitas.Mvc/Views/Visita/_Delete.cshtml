@@ -1,0 +1,128 @@
+﻿@model Visitas.Models.Visitass
+
+<center>
+    <h2 class="marron">Eliminar</h2>
+</center>
+
+<center>
+    <h3 class="rojo">¿Estás seguro de eliminar esta visita?</h3>
+</center>
+
+<div class="form-horizontal">
+    <hr />
+
+    <div class="form-group">
+        <div class="col-md-4">
+            <strong>
+                @Html.DisplayNameFor(model => model.Fe_Registro)
+            </strong>
+        </div>
+        <div class="col-md-8">
+            @Html.DisplayFor(model => model.Fe_Registro)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-4">
+            <strong>
+                @Html.DisplayNameFor(model => model.Co_Pase)
+            </strong>
+        </div>
+        <div class="col-md-8">
+            @Html.DisplayFor(model => model.Co_Pase)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-4">
+            <strong>
+                @Html.DisplayNameFor(model => model.Fe_Ingreso)
+            </strong>
+        </div>
+        <div class="col-md-8">
+            @Html.DisplayFor(model => model.Fe_Ingreso)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-4">
+            <strong>
+                @Html.DisplayNameFor(model => model.Fe_Salida)
+            </strong>
+        </div>
+        <div class="col-md-8">
+            @Html.DisplayFor(model => model.Fe_Salida)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-4">
+            <strong>
+                @Html.DisplayNameFor(model => model.No_Lugar_Reunion)
+            </strong>
+        </div>
+        <div class="col-md-8">
+            @Html.DisplayFor(model => model.No_Lugar_Reunion)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-4">
+            <strong>
+                @Html.DisplayNameFor(model => model.Motivo)
+            </strong>
+        </div>
+        <div class="col-md-8">
+            @Html.DisplayFor(model => model.Motivo)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-4">
+            <strong>
+                @Html.DisplayNameFor(model => model.VisitanteId)
+            </strong>
+        </div>
+        <div class="col-md-8">
+            @Html.DisplayFor(model => model.VisitanteId)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-4">
+            <strong>
+                @Html.DisplayNameFor(model => model.TrabajadorId)
+            </strong>
+        </div>
+        <div class="col-md-8">
+            @Html.DisplayFor(model => model.TrabajadorId)
+        </div>
+    </div>
+
+    @*(Acion , el controlador donde se ubica el action que llamaremos)*@
+    @using (Ajax.BeginForm("Delete", new { Controller = "Visita" },
+            new AjaxOptions
+            {
+                HttpMethod = "POST", //Indicamos el tipo del metodo, sea POST O GET
+        InsertionMode = InsertionMode.Replace, // En caso exista, insercion de codigo HTML
+        UpdateTargetId = "modal-body", //Este modal-body, esta dentro de la estructura del modal que hemos creado
+        OnSuccess = "visita.success('delete')" //En el caso de existó, llamaremos a esa funcion de Javascript
+    },
+            htmlAttributes: new { id = "deleteForm" } /*indicamos todos los atributos que puede tener*/)
+            )
+    {
+        @Html.AntiForgeryToken()
+
+        <center>
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" />
+            </div>
+        </center>
+    }
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $.validator.unobtrusive.parse("#deleteForm");//(dentro del parentesis va el id que hemos colocado al inicio)
+    })
+</script>

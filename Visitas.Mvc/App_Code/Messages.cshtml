@@ -1,0 +1,19 @@
+﻿@helper Message(string id, string action, string type, string message)
+{
+    <div id="@id" class="hidden">
+        <div class="alert alert-@type">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">
+                &times;
+            </a>
+            <strong>@action! </strong> @message
+        </div>
+    </div>
+}
+
+@helper AlertMessages()
+{
+    // (el id , la accion es New, el tipo, mensaje)
+    @Message("createMessage", "New", "success", "Se logró crear exitosamente.")
+    @Message("deleteMessage", "Delete", "danger", "El registro se elimino exitosamente.")
+    @Message("editMessage", "Edit", "success", "El registro se actualizó exitosamente.")
+}

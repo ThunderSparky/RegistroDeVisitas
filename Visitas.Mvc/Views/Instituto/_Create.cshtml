@@ -1,0 +1,69 @@
+﻿@model Visitas.Models.Institutos
+
+<center>
+    <h2 class="marron">Creación</h2>
+</center>
+
+@*(Acion , el controlador donde se ubica el action que llamaremos)*@
+@using (Ajax.BeginForm("Create", new { Controller = "Instituto" },
+        new AjaxOptions
+        {
+            HttpMethod = "POST", //Indicamos el tipo del metodo, sea POST O GET
+            InsertionMode = InsertionMode.Replace, // En caso exista, insercion de codigo HTML
+            UpdateTargetId = "modal-body", //Este modal-body, esta dentro de la estructura del modal que hemos creado
+            OnSuccess = "instituto.success('create')" //En el caso de existó, llamaremos a esa funcion de Javascript
+        },
+        htmlAttributes: new { id = "createForm" } /*indicamos todos los atributos que puede tener*/)
+        )
+{
+    @Html.AntiForgeryToken()
+<center>
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.No_Instituto, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.No_Instituto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.No_Instituto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.De_Instituto, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.De_Instituto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.De_Instituto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tipo_Documento, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.Tipo_Documento, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Tipo_Documento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nu_Documento, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.Nu_Documento, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nu_Documento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-4 col-md-8">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</center>
+}
+
+<script type="text/javascript">
+    $(function () {
+        $.validator.unobtrusive.parse("#createForm");//(dentro del parentesis va el id que hemos colocado al inicio)
+    })
+</script>

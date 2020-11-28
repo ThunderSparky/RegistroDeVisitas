@@ -1,0 +1,72 @@
+﻿@model Visitas.Models.Institutos
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>¿Estás seguro de eliminar este instituto?</h3>
+<div>
+    <h4>Institutos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.No_Instituto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.No_Instituto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.De_Instituto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.De_Instituto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo_Documento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo_Documento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nu_Documento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nu_Documento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Imagen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Imagen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,88 @@
+﻿@model Visitas.Models.Visitantes
+
+<center>
+<h2 class="marron">Editar</h2>
+</center>
+
+@*(Acion , el controlador donde se ubica el action que llamaremos)*@
+@using (Ajax.BeginForm("Edit", new { Controller = "Visitante" },
+    new AjaxOptions
+    {
+        HttpMethod = "POST", //Indicamos el tipo del metodo, sea POST O GET
+        InsertionMode = InsertionMode.Replace, // En caso exista, insercion de codigo HTML
+        UpdateTargetId = "modal-body", //Este modal-body, esta dentro de la estructura del modal que hemos creado
+        OnSuccess = "visitante.success('edit')" //En el caso de existó, llamaremos a esa funcion de Javascript
+    },
+    htmlAttributes: new { id = "editForm" })
+    )
+{
+    @Html.AntiForgeryToken()
+<center>
+    <div class="form-horizontal">
+        <h4>Visitantes</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.No_Visitante, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.No_Visitante, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.No_Visitante, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ap_Paterno_Visitante, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.Ap_Paterno_Visitante, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Ap_Paterno_Visitante, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ap_Materno_Visitante, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.Ap_Materno_Visitante, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Ap_Materno_Visitante, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tipo_Documento, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.Tipo_Documento, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Tipo_Documento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nu_Documento, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.Nu_Documento, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nu_Documento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.InstitutoId, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.InstitutoId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.InstitutoId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-4 col-md-8">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</center>
+}
+
+    <script type="text/javascript">
+        $(function () {
+            $.validator.unobtrusive.parse("#editForm");
+        })
+    </script>

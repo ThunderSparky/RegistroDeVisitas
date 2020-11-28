@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<div class="jumbotron FondoBlanco">
+    <h2 class="blue">Bienvenido al Sistema de Registro de Visitas</h2>
+    <p class="lead">Buenas @User.Identity.Name</p>
+
+    <div class="row">
+        <div class="col-md-4 cuadro2" id="divdos">
+            <h2 class="marron">Objetivos</h2>
+            <ul>
+                <li><p>Transparentar las gestiones de interés que realizan los ciudadanos ante las entidades de la administración pública.</p></li>
+                <li>
+                    <p>
+                        Prevenir y contribuir a la detección de los posibles actos de corrupción en la toma de decisiones por parte de
+                        los empleados públicos
+                    </p>
+                </li>
+                <li><p>Coadyuvar a la mejora de la gestión interinstitucional de las entidades de la administración pública.</p></li>
+            </ul>
+        </div>
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-5">
+            <img src="~/Imagenes/objetivo.png" alt="Imagen" id="imagennah" width="350" height="350" />
+        </div>
+    </div>
+</div>
+
+<script type='text/javascript'></script>
+<script>
+    $('#divdos').on('click', aumentardos);
+    $('#divdos').on('mouseleave', disminuirdos);
+
+    function aumentardos() {
+        $('#imagennah').addClass('hidden');
+        $('#divdos').animate({ 'width': '100%' });
+    }
+    function disminuirdos() {
+        $('#divdos').animate({ 'width': '350px' });
+        $('#imagennah').removeClass('hidden');
+    }
+</script>
