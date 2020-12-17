@@ -1,10 +1,15 @@
 ﻿using log4net;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Visitas.Models;
+using Visitas.Mvc.ExternalServices;
 using Visitas.UnitOfWork;
 
 namespace Visitas.Mvc.Controllers
@@ -12,7 +17,7 @@ namespace Visitas.Mvc.Controllers
     [RoutePrefix("Oficina")]
     public class OficinaController : BaseController
     {
-        public OficinaController(ILog log, IUnitOfWork unit) : base(log, unit)
+        public OficinaController(ILog log, IUnitOfWork unit, IExternalAPIToken externalAPIToken) : base(log, unit, externalAPIToken)
         {
             
         }
@@ -27,12 +32,34 @@ namespace Visitas.Mvc.Controllers
         [HttpPost]
         public ActionResult Create(Oficinas oficina)
         {
+            //if (ModelState.IsValid)
+            //{
+            //    _unit.Oficinas.Insert(oficina);
+            //    return RedirectToAction("Index");
+            //}
+            //return PartialView("_Create",oficina);
+
+            /*Utilizando la inyeccion de dependencia para obtener el token y consumir el webapi*/
             if (ModelState.IsValid)
             {
-                _unit.Oficinas.Insert(oficina);
+                var httpClient = new HttpClient();
+
+                //Paso 1: consultar el token con inyección de dependencia
+                var tokenString = _externalAPIToken.GetExternalAPIToken();
+
+                //Paso 2: Consumir el servicio
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokenString);
+
+                var content = JsonConvert.SerializeObject(oficina);
+                var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+                var byteContent = new ByteArrayContent(buffer);
+                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                var json = httpClient.PostAsync("https://localhost:44329/oficina", byteContent);
+
                 return RedirectToAction("Index");
             }
-            return PartialView("_Create",oficina);
+            return PartialView("_Create", oficina);
         }
         public PartialViewResult Edit(int id)
         {
@@ -41,8 +68,28 @@ namespace Visitas.Mvc.Controllers
         [HttpPost]
         public ActionResult Edit(Oficinas oficina)
         {
-            if (_unit.Oficinas.Update(oficina)) return RedirectToAction("Index");
+            //if (_unit.Oficinas.Update(oficina)) return RedirectToAction("Index");
 
+            //return PartialView("_Edit", oficina);
+
+            /*Consumiendo el webapi*/
+            var httpClient = new HttpClient();
+            //1.Recuperamos el token
+            var context = Request.GetOwinContext();
+            var tokenString = context.Authentication.User.Claims.ElementAt(4).Value;
+            //2.Consumir el servicio
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokenString);//colocamos la cabecera
+            //para mandar la información en el body
+            var content = JsonConvert.SerializeObject(oficina);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+            var byteContent = new ByteArrayContent(buffer);
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            var json = httpClient.PutAsync("https://localhost:44329/oficina", byteContent);
+            var result = json.Result.Content.ReadAsStringAsync().Result;
+            var contentResult = JsonConvert.DeserializeObject<Dictionary<string, Boolean>>(result);
+
+            if (contentResult["status"]) return RedirectToAction("Index");
             return PartialView("_Edit", oficina);
         }
         public PartialViewResult Delete(int id)
@@ -67,12 +114,35 @@ namespace Visitas.Mvc.Controllers
             return totalRecords % rowSize != 0 ? (totalRecords / rowSize) + 1 : totalRecords / rowSize;
         }
         [Route("List/{page:int}/{rows:int}")]
-        public PartialViewResult List(int page, int rows)
+        public async Task<PartialViewResult> List(int page, int rows)
         {
-            if (page <= 0 || rows <= 0) return PartialView(new List<Oficinas>());
-            var startRecord = ((page - 1) * rows) + 1;
-            var endRecord = page * rows;
-            return PartialView("_List", _unit.Oficinas.PagedList(startRecord, endRecord));
+            //if (page <= 0 || rows <= 0) return PartialView(new List<Oficinas>());
+            //var startRecord = ((page - 1) * rows) + 1;
+            //var endRecord = page * rows;
+            //return PartialView("_List", _unit.Oficinas.PagedList(startRecord, endRecord));
+
+            /*Si se consume el web api*/
+            //Paso 1: Solicitar el token
+            var httpClient = new HttpClient();
+            var credential = new Dictionary<string, string>
+            {
+                {"grant_type", "password" },
+                {"username", "usi25@apci.gob.pe"},
+                {"password", "Julinho123" }
+            };
+            var response = await httpClient.PostAsync("https://localhost:44329/token",
+                new FormUrlEncodedContent(credential));
+            var responseContent = response.Content.ReadAsStringAsync().Result;
+            var tokenDictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseContent);
+
+            //Paso 2: Consumir el servicio
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokenDictionary["access_token"]);//Agregamos a la cabecera el token
+
+            var json = await httpClient.GetStringAsync("https://localhost:44329/oficina/pagina/" + page + "/" + rows);
+
+            List<Oficinas> lstOficinas = JsonConvert.DeserializeObject<List<Oficinas>>(json);
+
+            return PartialView("_List", lstOficinas);
         }
     }
 }

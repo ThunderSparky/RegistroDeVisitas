@@ -31,12 +31,33 @@
         //El parametro opcion, se establece las vistas de _Create, _Edit, ..., en el OnSuccess = "oficina.success('create')", este por ejm en el caso de _Create
         if (option === 'create') {
             $('#createMessage').removeClass('hidden');
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Creación éxitosa!',
+                showConfirmButton: false,
+                timer: 1500
+            });
         }
         else if (option === 'edit') {
             $('#editMessage').removeClass('hidden');
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Edición éxitosa!',
+                showConfirmButton: false,
+                timer: 1500
+            });
         }
         else if (option === 'delete') {
             $('#deleteMessage').removeClass('hidden');
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Eliminación éxitosa!',
+                showConfirmButton: false,
+                timer: 1500
+            });
         }
     }
 })(window.visitas = window.visitas || {});

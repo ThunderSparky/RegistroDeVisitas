@@ -1,4 +1,4 @@
-﻿@helper GetModal(string title)
+﻿@helper GetModal(string title, string closeFunction)
 {
     @* cuando comenzamos con @helper estamos indicando que estamos creando una funcion*@
 <div class="modal fade" id="modal-container" tabindex="-1" role="dialog" aria-labelledby="MyModalLabel">
@@ -16,4 +16,13 @@
         </div>
     </div>
 </div>
+
+//Para el signalR
+<script type="text/javascript">
+        $(function () {
+            $('#modal-container').on('hidden.bs.modal', function () {
+                @closeFunction
+            });
+        });
+</script>
 }

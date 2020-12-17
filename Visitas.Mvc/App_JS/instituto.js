@@ -3,7 +3,23 @@
     instituto.pages = 1;
     instituto.rowSize = 10;
 
-    init();
+    instituto.searchByFilter = searchByFilter;
+
+    instituto.limpiarFilter = limpiarFilter;
+
+    //Lo que viene ahora es del SignalR
+    instituto.hub = {};
+    instituto.ids = [];
+    instituto.recordInUse = false; //Este es como un flag que me indicará cuando esta en uso un modal
+
+    instituto.addInstituto = addInstitutoId;
+    instituto.removeInstituto = removeInstitutoId;
+    instituto.validate = validate;
+
+    $(function () {
+        connectToHub();
+        init();
+    });
 
     return instituto;
 
@@ -48,4 +64,57 @@
             $('.content').html(data);
         })
     }
+
+    function searchByFilter() {
+        var institutoName = document.getElementById("institutoName");
+        console.log(institutoName.value);
+        var institutoNum = document.getElementById("institutoNum");
+        console.log(institutoNum.value);
+
+        if (institutoName.value == '') institutoName.value = '-';
+        if (institutoNum.value == '') institutoNum.value = '-';
+
+        var url = '/Instituto/ListByFilters/' + institutoName.value + '/' + institutoNum.value;
+        $.get(url, function (data) {
+            $('.content').html(data);
+        }) 
+        $('#paginacion1').addClass('hidden');
+        $('#paginacion2').addClass('hidden');
+    }
+
+    function limpiarFilter() {
+        $('#paginacion1').removeClass('hidden');
+        $('#paginacion2').removeClass('hidden');
+        institutoName.value = '';
+        institutoNum.value = '';
+        init();
+    }
+
+    //Lo de abajo es para el SignalR
+    function addInstitutoId(id) {
+        instituto.hub.server.addInstitutoId(id);
+    }
+
+    function removeInstitutoId(id) {
+        instituto.hub.server.removeInstitutoId(id);
+    }
+
+    function connectToHub() {
+        instituto.hub = $.connection.institutoHub;
+        instituto.hub.client.institutoStatus = institutoStatus;
+    }
+
+    function institutoStatus(institutoIds) {
+        console.log(institutoIds);
+        instituto.ids = institutoIds;
+    }
+
+    function validate(id) {
+        //evalua si el registro esta en uso
+        instituto.recordInUse = (instituto.ids.indexOf(id) > -1);
+        if (instituto.recordInUse)
+            $('#inUse').removeClass('hidden');
+        $('#btn-save').html("");
+    }
+
 })(window.instituto = window.instituto || {})

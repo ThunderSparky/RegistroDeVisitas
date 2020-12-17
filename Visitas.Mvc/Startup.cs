@@ -18,6 +18,8 @@ namespace Visitas.Mvc
                 AuthenticationType = "ApplicationCookie",
                 LoginPath = new PathString("/Account/Login")
             });
+            //Esto es para el SignalR
+            app.MapSignalR(); 
         }
     }
 }

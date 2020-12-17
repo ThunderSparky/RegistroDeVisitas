@@ -11,5 +11,8 @@ namespace Visitas.Repositories.Interfaces
     {
         IEnumerable<Institutos> PagedList(int startRow, int endRow);
         int Count();
+        List<Institutos> GetByName(string name);
+        List<Institutos> GetByNum(string name);
+        List<Institutos> GetByNameAndNum(string name, string num);
     }
 }

@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Visitas.Mvc.ExternalServices;
 using Visitas.UnitOfWork;
 
 namespace Visitas.Mvc.Controllers
 {
     public class HomeController: BaseController
     {
-        public HomeController(ILog log, IUnitOfWork unit) : base(log, unit)
+        public HomeController(ILog log, IUnitOfWork unit,IExternalAPIToken externalAPIToken) : base(log, unit, externalAPIToken)
         {
             //_unit = new NorthwindUnitOfWork(ConfigurationManager.ConnectionStrings["NorthwindConnection"].ToString());
             //_unit = unit;

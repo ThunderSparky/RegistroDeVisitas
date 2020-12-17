@@ -57,6 +57,12 @@
 <script type="text/javascript">
     $(function () {
         $.validator.unobtrusive.parse("#createForm");//(dentro del parentesis va el id que hemos colocado al inicio)
-    })
+    });
+
+    cargolaboral.closeModal = function () {
+        //Cuando salgo del modal sin guardar, abajo hacemos que se libere el modal
+        @*if (!cargolaboral.recordInUse)
+            cargolaboral.removeCargolaboral("@Model.Id");*@
+    }
 </script>
 

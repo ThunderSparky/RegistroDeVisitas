@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Visitas.Models;
+using Visitas.Mvc.ExternalServices;
 using Visitas.UnitOfWork;
 
 namespace Visitas.Mvc.Controllers
@@ -12,7 +13,7 @@ namespace Visitas.Mvc.Controllers
     [RoutePrefix("Trabajador")]
     public class TrabajadorController : BaseController
     {
-        public TrabajadorController(ILog log, IUnitOfWork unit) : base(log, unit)
+        public TrabajadorController(ILog log, IUnitOfWork unit, IExternalAPIToken externalAPIToken) : base(log, unit, externalAPIToken)
         {
 
         }
@@ -22,6 +23,8 @@ namespace Visitas.Mvc.Controllers
         }
         public PartialViewResult Create()
         {
+            ViewBag.Oficinas = _unit.Oficinas.GetList(); //Para traer la lista de las oficinas
+            ViewBag.Cargolaboral = _unit.CargosLaborales.GetList(); //Para traer la lista de los cargos laborales
             return PartialView("_Create", new Trabajadores());
         }
         [HttpPost]

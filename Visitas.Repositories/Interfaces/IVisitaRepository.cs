@@ -11,5 +11,6 @@ namespace Visitas.Repositories.Interfaces
     {
         IEnumerable<Visitass> PagedList(int startRow, int endRow);
         int Count();
+        List<Visitass> GetByFecha(string fechainicio, string fechafin);
     }
 }

@@ -4,28 +4,81 @@
     ViewBag.Title = "Index";
 }
 <center>
-<h2 class="blue">Institutos</h2>
+    <h2 class="blue">Institutos</h2>
 </center>
 @Messages.AlertMessages()
 
-<p>
-    @*no colocamos nada en el href, porque lo que hará es llamar un evento*@
-    @*.getModal = lo que hace es activar en la pantalla el modal, y lo que va dentro del parentesis lo que hace es llamar a la accion*@
-    <a href="#" onclick="visitas.getModal('@Url.Action("Create")'); return false;" ;
-       data-toggle="modal" data-target="#modal-container" class="btn btn-success btn-sm">
-        Nuevo <span class="glyphicon glyphicon-plus"></span>
-    </a>
-</p>
+<div class="row">
+    <div class="form-group">
+        <div class="col-sm-6">
+            <h3>Filtros de búsqueda</h3>
+        </div>
+    </div>
+</div>
+<hr />
 
-<div class="pagination"></div>
+<div class="row">
+    <div class="form-group">
+        <div class="col-sm-12">
+            <form>
+                <div class="row">
+                    <div class="form-group col-sm-4">
+                        <label>Nombre de Instituto: </label>
+                        <input type="text" id="institutoName" name="institutoName" class="form-control" placeholder="Nombre del Instituto" />
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label>Número de Documento: </label>
+                        <input type="text" id="institutoNum" name="institutoNum" class="form-control" placeholder="Número de documento" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-2">
+        <a href="#" onclick="instituto.searchByFilter()" class="btn btn-primary">
+            <span class="glyphicon glyphicon-search"></span> Buscar Institutos
+        </a>
+    </div>
+    <div class="col-sm-2">
+        <a href="#" onclick="instituto.limpiarFilter()" class="btn btn-default">
+            Limpiar <span class="glyphicon glyphicon-apple"></span>
+        </a>
+    </div>
+    <div class="col-sm-2">
+        <a href="#" onclick="visitas.getModal('@Url.Action("Create")'); return false;" ;
+           data-toggle="modal" data-target="#modal-container" class="btn btn-success">
+            Nuevo <span class="glyphicon glyphicon-plus"></span>
+        </a>
+    </div>
+</div>
+
+<hr />
+
+<div class="pagination" id="paginacion1"></div>
 <div class="content"></div>
-<div class="pagination"></div>
+<div class="pagination" id="paginacion2"></div>
 
 @*Con esto llamamos a una vista parcial*@
 @*@Html.Partial("_List")*@
 
-@Modal.GetModal("Instituto")
+@Modal.GetModal("Instituto", "instituto.closeModal();")
 
 <script src="~/Scripts/jquery.bootpag.min.js"></script>
 <script src="~/App_JS/visitas.js" type="text/javascript"></script>
 <script src="~/App_JS/instituto.js" type="text/javascript"></script>
+
+@*Todo esto es para el SignalR*@
+<script src="~/Scripts/jquery.signalR-2.4.1.js"></script>
+@*En caso se utilizará en varios niveles, lo de abajo se podría colocar en el Layout*@
+<script src="/signalr/hubs"></script>
+<script type="text/javascript">
+    $(function () {
+        var institutoHub = $.connection.institutoHub;
+        $.connection.hub.start().done(function () {
+            console.log('connected to hub ...');
+        });
+    });
+</script>

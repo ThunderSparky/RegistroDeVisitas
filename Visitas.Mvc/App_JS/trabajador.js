@@ -3,7 +3,19 @@
     trabajador.pages = 1;
     trabajador.rowSize = 10;
 
-    init();
+    //Lo que viene ahora es del SignalR
+    trabajador.hub = {};
+    trabajador.ids = [];
+    trabajador.recordInUse = false; //Este es como un flag que me indicará cuando esta en uso un modal
+
+    trabajador.addTrabajador = addTrabajadorId;
+    trabajador.removeTrabajador = removeTrabajadorId;
+    trabajador.validate = validate;
+
+    $(function () {
+        connectToHub();
+        init();
+    });
 
     return trabajador;
 
@@ -47,5 +59,32 @@
         $.get(url, function (data) {
             $('.content').html(data);
         })
+    }
+
+    //Lo de abajo es para el SignalR
+    function addTrabajadorId(id) {
+        trabajador.hub.server.addTrabajadorId(id);
+    }
+
+    function removeTrabajadorId(id) {
+        trabajador.hub.server.removeTrabajadorId(id);
+    }
+
+    function connectToHub() {
+        trabajador.hub = $.connection.trabajadorHub;
+        trabajador.hub.client.trabajadorStatus = trabajadorStatus;
+    }
+
+    function trabajadorStatus(trabajadorIds) {
+        console.log(trabajadorIds);
+        trabajador.ids = trabajadorIds;
+    }
+
+    function validate(id) {
+        //evalua si el registro esta en uso
+        trabajador.recordInUse = (trabajador.ids.indexOf(id) > -1);
+        if (trabajador.recordInUse)
+            $('#inUse').removeClass('hidden');
+        $('#btn-save').html("");
     }
 })(window.trabajador = window.trabajador || {})

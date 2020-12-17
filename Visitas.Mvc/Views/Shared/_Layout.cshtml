@@ -26,12 +26,21 @@
                 <ul class="nav navbar-nav">
                     @*(El primer parámetro es el texto que debe mostrar el enlace,el segundo es la acción que debe ejecutar,y el tercer parámetro indica el controlador de dicha acción)*@
                     <li>@Html.ActionLink("Objetivos", "Objetivos", "Home")</li>
-                    <li>@Html.ActionLink("Visitas", "Index", "Visita")</li>
-                    <li>@Html.ActionLink("Visitantes", "Index", "Visitante")</li>
-                    <li>@Html.ActionLink("Institutos", "Index", "Instituto")</li>
-                    <li>@Html.ActionLink("Oficinas", "Index", "Oficina")</li>
-                    <li>@Html.ActionLink("Trabajadores", "Index", "Trabajador")</li>
-                    <li>@Html.ActionLink("Cargos Laborales", "Index", "CargoLaboral")</li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Visitas", "Index", "Visita")</li>
+                        <li>@Html.ActionLink("Visitantes", "Index", "Visitante")</li>
+
+                        if (User.IsInRole("Administrador"))
+                        {
+                            <li>@Html.ActionLink("Institutos", "Index", "Instituto")</li>
+                            <li>@Html.ActionLink("Oficinas", "Index", "Oficina")</li>
+                            <li>@Html.ActionLink("Trabajadores", "Index", "Trabajador")</li>
+                            <li>@Html.ActionLink("Cargos Laborales", "Index", "CargoLaboral")</li>
+                        }
+                    }
+
+
                     @*<li>@Html.ActionLink("Usuarios del Sistema", "Index", "Home")</li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -56,6 +65,8 @@
     </div>
 
     @Scripts.Render("~/bundles/bootstrap")
+@*<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>*@
+    <script src="~/Scripts/sweetalert2.js"></script> 
     @RenderSection("scripts", required: false)
 </body>
 </html>

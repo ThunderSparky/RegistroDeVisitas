@@ -1,11 +1,14 @@
 ﻿using log4net;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using Visitas.Models;
+using Visitas.Mvc.ExternalServices;
 using Visitas.Mvc.Models;
 using Visitas.UnitOfWork;
 
@@ -13,7 +16,7 @@ namespace Visitas.Mvc.Controllers
 {
     public class AccountController : BaseController
     {
-        public AccountController(ILog log, IUnitOfWork unit) : base(log, unit) { }
+        public AccountController(ILog log, IUnitOfWork unit, IExternalAPIToken externalAPIToken) : base(log, unit, externalAPIToken) { }
 
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -36,6 +39,9 @@ namespace Visitas.Mvc.Controllers
                 ModelState.AddModelError("Error", "Invalid email or password");
                 return View(user);
             }
+
+            var token = GetToken(user.Email, user.Password);
+
             //En caso sean iguales el EMAIL y PASSWORD, continuamos
             //Este objeto Claim, me sirve para manejar una lista de CLAIMs, para manejar la información del usuario durante la ejecución de la app
             var identity = new ClaimsIdentity(new[]
@@ -43,7 +49,8 @@ namespace Visitas.Mvc.Controllers
                 new Claim(ClaimTypes.Email, validUser.Email),
                 new Claim(ClaimTypes.Role, validUser.Roles),
                 new Claim(ClaimTypes.Name, $"{validUser.FirstName} {validUser.LastName}"),
-                new Claim(ClaimTypes.NameIdentifier, validUser.Email)
+                new Claim(ClaimTypes.NameIdentifier, validUser.Email),
+                new Claim(ClaimTypes.UserData, token)
             }, "ApplicationCookie");
             //Este context, me permite manipular objetos que se comparten durante la ejecucion de la aplicacion 
             var context = Request.GetOwinContext();
@@ -52,6 +59,22 @@ namespace Visitas.Mvc.Controllers
             authManager.SignIn(identity); //Con esto nos logueamos
 
             return RedirectToLocal(user.ReturnUrl);//Lo manda en donde se quedo el usuario en el último instante
+        }
+        private string GetToken(string email, string password)
+        {
+            var httpClient = new HttpClient();
+            var credential = new Dictionary<string, string>
+            {
+                {"grant_type", "password" },
+                {"username", email },
+                {"password", password}
+            };
+            var response = httpClient.PostAsync("https://localhost:44329/token",
+                    new FormUrlEncodedContent(credential));
+            var responseContent = response.Result.Content.ReadAsStringAsync().Result;
+            var tokenDictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseContent);
+            var tokenString = tokenDictionary["access_token"];
+            return tokenString;
         }
         [AllowAnonymous]
         public ActionResult Register()

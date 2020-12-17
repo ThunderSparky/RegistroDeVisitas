@@ -13,13 +13,13 @@ namespace Visitas.Models
         [Dapper.Contrib.Extensions.Key]//KEY es para llaves que son autoincrementales
         public int Id { get; set; }
         [Display(Name = "Fecha de Registro")]
-        public DateTime Fe_Registro { get; set; }
+        public DateTime? Fe_Registro { get; set; }
         [Display(Name = "Código de Pase")]
         public string Co_Pase { get; set; }
         [Display(Name = "Fecha de Ingreso")]
-        public DateTime Fe_Ingreso { get; set; }
+        public string Fe_Ingreso { get; set; }
         [Display(Name = "Fecha de Salida")]
-        public DateTime? Fe_Salida { get; set; }
+        public string Fe_Salida { get; set; }
         [Display(Name = "Usuario que Registró")]
         public string No_Usuario_Registro { get; set; }
         [Display(Name = "Usuario que Modificó")]

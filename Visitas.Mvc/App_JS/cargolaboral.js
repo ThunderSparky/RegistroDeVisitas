@@ -2,8 +2,19 @@
     cargolaboral.success = successReload;
     cargolaboral.pages = 1;
     cargolaboral.rowSize = 10;
+    //Lo que viene ahora es del SignalR
+    cargolaboral.hub = {};
+    cargolaboral.ids = [];
+    cargolaboral.recordInUse = false; //Este es como un flag que me indicará cuando esta en uso un modal
 
-    init();
+    cargolaboral.addCargolaboral = addCargolaboralId;
+    cargolaboral.removeCargolaboral = removeCargolaboralId;
+    cargolaboral.validate = validate;
+
+    $(function () {
+        connectToHub();
+        init();
+    });
 
     return cargolaboral;
 
@@ -48,4 +59,32 @@
             $('.content').html(data);
         })
     }
+
+    //Lo de abajo es para el SignalR
+    function addCargolaboralId(id) {
+        cargolaboral.hub.server.addCargolaboralId(id);
+    }
+
+    function removeCargolaboralId(id) {
+        cargolaboral.hub.server.removeCargolaboralId(id);
+    }
+
+    function connectToHub() {
+        cargolaboral.hub = $.connection.cargolaboralHub;
+        cargolaboral.hub.client.cargolaboralStatus = cargolaboralStatus;
+    }
+
+    function cargolaboralStatus(cargolaboralIds) {
+        console.log(cargolaboralIds);
+        cargolaboral.ids = cargolaboralIds;
+    }
+
+    function validate(id) {
+        //evalua si el registro esta en uso
+        cargolaboral.recordInUse = (cargolaboral.ids.indexOf(id) > -1);
+        if (cargolaboral.recordInUse)
+            $('#inUse').removeClass('hidden');
+        $('#btn-save').html("");
+    }
+
 })(window.cargolaboral = window.cargolaboral || {})

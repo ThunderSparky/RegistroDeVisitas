@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Visitas.Models;
+using Visitas.Mvc.ExternalServices;
 using Visitas.UnitOfWork;
 
 namespace Visitas.Mvc.Controllers
@@ -12,7 +13,7 @@ namespace Visitas.Mvc.Controllers
     [RoutePrefix("CargoLaboral")]
     public class CargoLaboralController : BaseController
     {
-        public CargoLaboralController(ILog log, IUnitOfWork unit) : base(log, unit)
+        public CargoLaboralController(ILog log, IUnitOfWork unit, IExternalAPIToken externalAPIToken) : base(log, unit, externalAPIToken)
         {
 
         }

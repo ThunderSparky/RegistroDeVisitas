@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Visitas.Models;
+using Visitas.Mvc.ExternalServices;
 using Visitas.UnitOfWork;
 
 namespace Visitas.Mvc.Controllers
@@ -12,7 +13,7 @@ namespace Visitas.Mvc.Controllers
     [RoutePrefix("Instituto")]
     public class InstitutoController : BaseController
     {
-        public InstitutoController(ILog log, IUnitOfWork unit) : base(log, unit)
+        public InstitutoController(ILog log, IUnitOfWork unit, IExternalAPIToken externalAPIToken) : base(log, unit, externalAPIToken)
         {
 
         }
@@ -73,6 +74,26 @@ namespace Visitas.Mvc.Controllers
             var startRecord = ((page - 1) * rows) + 1;
             var endRecord = page * rows;
             return PartialView("_List", _unit.Institutos.PagedList(startRecord, endRecord));
+        }
+        [Route("ListByFilters/{institutoName}/{institutoNum}")]
+        public PartialViewResult ListByFilters(string institutoName, string institutoNum)
+        {
+            List<Institutos> lstInstitutos = new List<Institutos>();
+
+            if (!institutoName.Equals("-") && institutoNum.Equals("-"))
+            {
+                lstInstitutos = _unit.Institutos.GetByName(institutoName);
+                
+            }else if(!institutoNum.Equals("-") && institutoName.Equals("-"))
+            {
+                //var instituto = _unit.Institutos.GetByNum(institutoNum);
+                //lstInstitutos.Add(instituto);
+                lstInstitutos = _unit.Institutos.GetByNum(institutoNum);
+            }else if(!institutoNum.Equals("-") && !institutoName.Equals("-"))
+            {
+                lstInstitutos = _unit.Institutos.GetByNameAndNum(institutoName, institutoNum);
+            }
+            return PartialView("_List", lstInstitutos);
         }
     }
 }

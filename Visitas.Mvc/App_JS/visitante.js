@@ -3,7 +3,19 @@
     visitante.pages = 1;
     visitante.rowSize = 10;
 
-    init();
+    //Lo que viene ahora es del SignalR
+    visitante.hub = {};
+    visitante.ids = [];
+    visitante.recordInUse = false; //Este es como un flag que me indicará cuando esta en uso un modal
+
+    visitante.addVisitante = addVisitanteId;
+    visitante.removeVisitante = removeVisitanteId;
+    visitante.validate = validate;
+
+    $(function () {
+        connectToHub();
+        init();
+    });
 
     return visitante;
 
@@ -48,4 +60,32 @@
             $('.content').html(data);
         })
     }
+
+    //Lo de abajo es para el SignalR
+    function addVisitanteId(id) {
+        visitante.hub.server.addVisitanteId(id);
+    }
+
+    function removeVisitanteId(id) {
+        visitante.hub.server.removeVisitanteId(id);
+    }
+
+    function connectToHub() {
+        visitante.hub = $.connection.visitanteHub;
+        visitante.hub.client.visitanteStatus = visitanteStatus;
+    }
+
+    function visitanteStatus(visitanteIds) {
+        console.log(visitanteIds);
+        visitante.ids = visitanteIds;
+    }
+
+    function validate(id) {
+        //evalua si el registro esta en uso
+        visitante.recordInUse = (visitante.ids.indexOf(id) > -1);
+        if (visitante.recordInUse)
+            $('#inUse').removeClass('hidden');
+        $('#btn-save').html("");
+    }
+
 })(window.visitante = window.visitante || {})

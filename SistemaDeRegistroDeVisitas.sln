@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visitas.Repositories.Dapper
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visitas.UnitOfWork", "Visitas.UnitOfWork\Visitas.UnitOfWork.csproj", "{04BF5B17-E041-4335-88F8-904444C48D7E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visitas.WebApi", "Visitas.WebApi\Visitas.WebApi.csproj", "{FCD4ADB1-5F18-493A-AE31-9D54B0ECCE65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{04BF5B17-E041-4335-88F8-904444C48D7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04BF5B17-E041-4335-88F8-904444C48D7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04BF5B17-E041-4335-88F8-904444C48D7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCD4ADB1-5F18-493A-AE31-9D54B0ECCE65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCD4ADB1-5F18-493A-AE31-9D54B0ECCE65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCD4ADB1-5F18-493A-AE31-9D54B0ECCE65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCD4ADB1-5F18-493A-AE31-9D54B0ECCE65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

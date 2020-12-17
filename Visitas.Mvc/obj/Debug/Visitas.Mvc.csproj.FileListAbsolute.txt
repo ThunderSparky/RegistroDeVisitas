@@ -119,3 +119,9 @@ C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Mvc\bin\SimpleI
 C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Mvc\bin\SimpleInjector.Integration.Web.Mvc.xml
 C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Mvc\bin\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Mvc\bin\System.Threading.Tasks.Extensions.xml
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Mvc\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Mvc\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Mvc\bin\Microsoft.AspNet.SignalR.Core.pdb
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Mvc\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Mvc\bin\Microsoft.AspNet.SignalR.SystemWeb.pdb
+C:\Users\Julinho\source\repos\SistemaDeRegistroDeVisitas\Visitas.Mvc\bin\Microsoft.AspNet.SignalR.SystemWeb.xml

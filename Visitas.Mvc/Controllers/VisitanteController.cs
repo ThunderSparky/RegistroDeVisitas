@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Visitas.Models;
+using Visitas.Mvc.ExternalServices;
 using Visitas.UnitOfWork;
 
 namespace Visitas.Mvc.Controllers
@@ -12,7 +13,7 @@ namespace Visitas.Mvc.Controllers
     [RoutePrefix("Visitante")]
     public class VisitanteController : BaseController
     {
-        public VisitanteController(ILog log, IUnitOfWork unit) : base(log, unit)
+        public VisitanteController(ILog log, IUnitOfWork unit, IExternalAPIToken externalAPIToken) : base(log, unit, externalAPIToken)
         {
 
         }
@@ -22,6 +23,7 @@ namespace Visitas.Mvc.Controllers
         }
         public PartialViewResult Create()
         {
+            ViewBag.Instituto = _unit.Institutos.GetList(); //Para traer la lista de los institutos
             return PartialView("_Create", new Visitantes());
         }
         [HttpPost]

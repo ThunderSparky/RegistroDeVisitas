@@ -48,8 +48,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Tipo_Documento, htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-8">
-                @Html.EditorFor(model => model.Tipo_Documento, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Tipo_Documento, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.Tipo_Documento, new MultiSelectList(new[] { "DNI", "RUC", "PASAPORTE","CÉDULA DIPLOMÁTICA DE IDENTIDAD","CARNET DE EXTRANJERIA","OTROS" }), new { @class = "form-control" })
             </div>
         </div>
 
@@ -64,7 +63,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.InstitutoId, htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-8">
-                @Html.EditorFor(model => model.InstitutoId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.InstitutoId, new SelectList(ViewBag.Instituto, "Id", "No_Instituto")@*, "Elije una opcion"*@, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.InstitutoId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -78,8 +77,14 @@
 </center>
     }
 
-    <script type="text/javascript">
+<script type="text/javascript">
         $(function () {
             $.validator.unobtrusive.parse("#createForm");//(dentro del parentesis va el id que hemos colocado al inicio)
-        })
-    </script>
+        });
+
+        visitante.closeModal = function () {
+        //Cuando salgo del modal sin guardar, abajo hacemos que se libere el modal
+        @*if (!visitante.recordInUse)
+            visitante.removeVisitante("@Model.Id");*@
+        }
+</script>

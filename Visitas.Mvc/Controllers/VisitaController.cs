@@ -1,10 +1,12 @@
 ﻿using log4net;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Visitas.Models;
+using Visitas.Mvc.ExternalServices;
 using Visitas.UnitOfWork;
 
 namespace Visitas.Mvc.Controllers
@@ -12,7 +14,7 @@ namespace Visitas.Mvc.Controllers
     [RoutePrefix("Visita")]
     public class VisitaController : BaseController
     {
-        public VisitaController(ILog log, IUnitOfWork unit) : base(log, unit)
+        public VisitaController(ILog log, IUnitOfWork unit, IExternalAPIToken externalAPIToken) : base(log, unit, externalAPIToken)
         {
 
         }
@@ -22,6 +24,8 @@ namespace Visitas.Mvc.Controllers
         }
         public PartialViewResult Create()
         {
+            ViewBag.Visitante = _unit.Visitantes.GetList(); //Para traer la lista de los visitantes
+            ViewBag.Trabajador = _unit.Trabajadores.GetList(); //Para traer la lista de los trabajadores
             return PartialView("_Create", new Visitass());
         }
         [HttpPost]
@@ -58,6 +62,7 @@ namespace Visitas.Mvc.Controllers
         }
         public PartialViewResult Details(int id)
         {
+            
             return PartialView("_Details", _unit.Visitass.GetById(id));
         }
         [Route("CountPages/{rowSize:int}")]
@@ -73,6 +78,27 @@ namespace Visitas.Mvc.Controllers
             var startRecord = ((page - 1) * rows) + 1;
             var endRecord = page * rows;
             return PartialView("_List", _unit.Visitass.PagedList(startRecord, endRecord));
+        }
+        [Route("ListByFilters/{visitainicio}/{visitafin}")]
+        public PartialViewResult ListByFilters(string visitainicio, string visitafin)
+        {
+            List<Visitass> lstVisitas = new List<Visitass>();
+
+            if (!visitainicio.Equals("dd/mm/aaaa") && !visitafin.Equals("dd/mm/aaaa"))
+            {
+                lstVisitas = _unit.Visitass.GetByFecha(visitainicio, visitafin);
+            }
+            //else if (!institutoNum.Equals("-") && institutoName.Equals("-"))
+            //{
+            //    //var instituto = _unit.Institutos.GetByNum(institutoNum);
+            //    //lstInstitutos.Add(instituto);
+            //    lstInstitutos = _unit.Institutos.GetByNum(institutoNum);
+            //}
+            //else if (!institutoNum.Equals("-") && !institutoName.Equals("-"))
+            //{
+            //    lstInstitutos = _unit.Institutos.GetByNameAndNum(institutoName, institutoNum);
+            //}
+            return PartialView("_List", lstVisitas);
         }
     }
 }

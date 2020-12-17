@@ -24,8 +24,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Sede, htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-8">
-                @Html.EditorFor(model => model.Sede, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Sede, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.Sede, new MultiSelectList(new[] { "MIRAFLORES" }), new { @class = "form-control" })
             </div>
         </div>
 
@@ -70,11 +69,17 @@
 </center>
     }
 
-    <script type="text/javascript">
+<script type="text/javascript">
         $(function () {
             $.validator.unobtrusive.parse("#createForm");//(dentro del parentesis va el id que hemos colocado al inicio)
-        })
-    </script>
+        });
+
+        oficina.closeModal = function () {
+        //Cuando salgo del modal sin guardar, abajo hacemos que se libere el modal
+            @*if (!oficina.recordInUse)
+                oficina.removeOficina("@Model.Id");*@
+        }
+</script>
 
     @*@section Scripts {
             @Scripts.Render("~/bundles/jqueryval")

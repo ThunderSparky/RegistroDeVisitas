@@ -3,6 +3,7 @@
 <center>
 <h2 class="marron">Editar</h2>
 </center>
+@Messages.Message("inUse", "Edit", "danger", "Esta visita esta en uso en este momento.")
 
 @*(Acion , el controlador donde se ubica el action que llamaremos)*@
 @using (Ajax.BeginForm("Edit", new { Controller = "Visita" },
@@ -11,7 +12,7 @@
         HttpMethod = "POST", //Indicamos el tipo del metodo, sea POST O GET
         InsertionMode = InsertionMode.Replace, // En caso exista, insercion de codigo HTML
         UpdateTargetId = "modal-body", //Este modal-body, esta dentro de la estructura del modal que hemos creado
-        OnSuccess = "visita.success('edit')" //En el caso de existó, llamaremos a esa funcion de Javascript
+        OnSuccess = "visita.success('edit');visita.removeVisita('" + Model.Id + "');" //En el caso de existó, llamaremos a esa funcion de Javascript
     },
     htmlAttributes: new { id = "editForm" })
     )
@@ -112,8 +113,18 @@
 </center>
     }
 
-    <script type="text/javascript">
+<script type="text/javascript">
         $(function () {
             $.validator.unobtrusive.parse("#editForm");
-        })
-    </script>
+            //Todo lo de abajo es para el SignalR
+            $('#inUse').addClass('hidden');//Cuando el modal se abra
+            visita.addVisita("@Model.Id");//Añadimos el id a la lista de bloqueos
+            visita.validate("@Model.Id");
+        });
+
+        visita.closeModal = function () {
+            //Cuando salgo del modal sin guardar, abajo hacemos que se libere el modal
+            if (!visita.recordInUse)
+                visita.removeVisita("@Model.Id");
+        }
+</script>

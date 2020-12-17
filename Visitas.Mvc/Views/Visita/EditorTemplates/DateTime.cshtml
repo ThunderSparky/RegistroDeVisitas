@@ -1,0 +1,15 @@
+﻿@model DateTime?
+
+@if (!Model.HasValue)
+{
+    string anio = Convert.ToString(DateTime.Now.Year);
+    string mes = Convert.ToString(DateTime.Now.Month);
+    string dia = Convert.ToString(DateTime.Now.Day);
+    <input type="date" id="@ViewData.TemplateInfo.GetFullHtmlFieldId("")"
+           name="@ViewData.TemplateInfo.GetFullHtmlFieldName("")" class="form-control" value="@Convert.ToString(anio+'-'+mes+'-'+dia)"/>
+}
+else
+{
+    <input type="date" value="@Model.Value.ToString("yyyy-MM-dd")"
+           id="@ViewData.TemplateInfo.GetFullHtmlFieldId("")" name="@ViewData.TemplateInfo.GetFullHtmlFieldName("")" class="form-control"/>
+}

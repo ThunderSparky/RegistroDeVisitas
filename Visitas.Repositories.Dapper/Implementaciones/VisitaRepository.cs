@@ -38,5 +38,17 @@ namespace Visitas.Repositories.Dapper.Implementaciones
                 return connection.ExecuteScalar<int>("SELECT COUNT(*) FROM dbo.Visitass");
             }
         }
+        public List<Visitass> GetByFecha(string fechainicio, string fechafin)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@fechainicio", fechainicio);
+                parameters.Add("@fechafin", fechafin);
+                return (List<Visitass>)connection.Query<Visitass>("dbo.uspGetVisitasByFecha",
+                    parameters,
+                    commandType: System.Data.CommandType.StoredProcedure);
+            }
+        }
     }
 }

@@ -38,5 +38,39 @@ namespace Visitas.Repositories.Dapper.Implementaciones
                 return connection.ExecuteScalar<int>("SELECT COUNT(*) FROM dbo.Institutos");
             }
         }
+        public List<Institutos> GetByName(string name)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@name", name);
+                return (List<Institutos>)connection.Query<Institutos>("dbo.uspGetInstitutosByName",
+                    parameters,
+                    commandType: System.Data.CommandType.StoredProcedure);
+            }
+        }
+        public List<Institutos> GetByNum(string num)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@num", num);
+                return (List<Institutos>)connection.Query<Institutos>("dbo.uspGetInstitutosByNum",
+                    parameters,
+                    commandType: System.Data.CommandType.StoredProcedure);
+            }
+        }
+        public List<Institutos> GetByNameAndNum(string name, string num)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@name", name);
+                parameters.Add("@num", num);
+                return (List<Institutos>)connection.Query<Institutos>("dbo.uspGetInstitutosByNameAndNum",
+                    parameters,
+                    commandType: System.Data.CommandType.StoredProcedure);
+            }
+        }
     }
 }

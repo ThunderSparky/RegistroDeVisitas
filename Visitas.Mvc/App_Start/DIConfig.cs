@@ -10,6 +10,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using Visitas.Mvc.ExternalServices;
 using Visitas.Repositories.Dapper.Implementaciones;
 using Visitas.UnitOfWork;
 
@@ -29,6 +30,10 @@ namespace Visitas.Mvc.App_Start
             /*Inyeccion del log4net*/
             container.RegisterConditional(typeof(ILog), c => typeof(Log4NetAdapter<>).MakeGenericType(
                 c.Consumer.ImplementationType), Lifestyle.Singleton, c => true);
+
+            /*Inyeccion del ExternalAPIToken*/
+            container.Register<IExternalAPIToken>(() => new ExternalAPIToken());
+
             container.Verify();
             DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
         }
