@@ -19,7 +19,7 @@ namespace Visitas.Models
         [Display(Name = "Descripción")]
         public string De_Cargo_Laboral { get; set; }
         public string Imagen { get; set; }
-        [Display(Name = "Activo")]
+        [Display(Name = "Estado")]
         public string Estado { get; set; }
     }
 }

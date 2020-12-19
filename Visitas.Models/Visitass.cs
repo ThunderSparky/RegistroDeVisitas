@@ -28,7 +28,7 @@ namespace Visitas.Models
         public string No_Lugar_Reunion { get; set; }
         [Display(Name = "Motivo")]
         public string Motivo { get; set; }
-        [Display(Name = "Activo")]
+        [Display(Name = "Estado")]
         public string No_Estado { get; set; }
         [Display(Name = "Código de Visitante")]
         public int VisitanteId { get; set; }

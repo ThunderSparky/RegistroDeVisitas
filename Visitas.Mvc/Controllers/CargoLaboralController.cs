@@ -23,6 +23,7 @@ namespace Visitas.Mvc.Controllers
         }
         public PartialViewResult Create()
         {
+            ViewBag.Estado = new List<Estado>() { new Estado() { Id = "1", Nombre = "Activo" }, new Estado() { Id = "0", Nombre = "Inactivo" } };
             return PartialView("_Create", new CargosLaborales());
         }
         [HttpPost]
@@ -37,6 +38,7 @@ namespace Visitas.Mvc.Controllers
         }
         public PartialViewResult Edit(int id)
         {
+            //ViewBag.Estado = new List<Estado>() { new Estado() { Id = "1", Nombre = "Activo" }, new Estado() { Id = "0", Nombre = "Inactivo" } };
             return PartialView("_Edit", _unit.CargosLaborales.GetById(id));
         }
         [HttpPost]

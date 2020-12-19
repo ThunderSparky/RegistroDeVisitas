@@ -22,7 +22,7 @@ namespace Visitas.Models
         [Display(Name = "Jefe")]
         public string Jefe_Oficina { get; set; }
         public string Imagen { get; set; }
-        [Display(Name = "Activo")]
+        [Display(Name = "Estado")]
         public string Estado { get; set; }
     }
 }

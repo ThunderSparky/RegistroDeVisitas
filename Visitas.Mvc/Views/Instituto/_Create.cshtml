@@ -32,7 +32,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.De_Instituto, htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-8">
-                @Html.EditorFor(model => model.De_Instituto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.De_Instituto, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.De_Instituto, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -49,6 +49,14 @@
             <div class="col-md-8">
                 @Html.EditorFor(model => model.Nu_Documento, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Nu_Documento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.DropDownListFor(model => model.Estado, new SelectList(ViewBag.Estado, "Id", "Nombre")@*, "Elije una opcion"*@, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
             </div>
         </div>
 

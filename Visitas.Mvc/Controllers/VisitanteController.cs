@@ -38,6 +38,7 @@ namespace Visitas.Mvc.Controllers
         }
         public PartialViewResult Edit(int id)
         {
+            ViewBag.Instituto = _unit.Institutos.GetList(); //Para traer la lista de los institutos
             return PartialView("_Edit", _unit.Visitantes.GetById(id));
         }
         [HttpPost]

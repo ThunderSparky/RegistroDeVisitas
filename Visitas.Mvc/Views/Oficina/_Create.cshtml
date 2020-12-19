@@ -47,7 +47,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.De_Oficina, htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-8">
-                @Html.EditorFor(model => model.De_Oficina, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextAreaFor(model => model.De_Oficina, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.De_Oficina, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -55,8 +55,16 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Jefe_Oficina, htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-8">
-                @Html.EditorFor(model => model.Jefe_Oficina, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.Jefe_Oficina, new SelectList(ViewBag.Trabajador, "No_Trabajador", "No_Trabajador")@*, "Elije una opcion"*@, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Jefe_Oficina, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.DropDownListFor(model => model.Estado, new SelectList(ViewBag.Estado, "Id", "Nombre")@*, "Elije una opcion"*@, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
             </div>
         </div>
 

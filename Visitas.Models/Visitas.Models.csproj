@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CargosLaborales.cs" />
+    <Compile Include="Estado.cs" />
     <Compile Include="Institutos.cs" />
     <Compile Include="Oficinas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

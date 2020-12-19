@@ -27,7 +27,7 @@ namespace Visitas.Models
         [Display(Name = "Biografía")]
         public string Biografia { get; set; }
         public string Imagen { get; set; }
-        [Display(Name = "Activo")]
+        [Display(Name = "Estado")]
         public string Estado { get; set; }
         [Display(Name = "Código de Oficina")]
         public int OficinaId { get; set; }

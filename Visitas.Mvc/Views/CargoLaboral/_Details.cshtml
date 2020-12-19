@@ -39,7 +39,7 @@
         </div>
     </div>
     
-    <div class="form-group">
+    @*<div class="form-group">
         <div class="col-md-4">
             <strong>
                 @Html.DisplayNameFor(model => model.Imagen)
@@ -59,9 +59,16 @@
         <div class="col-md-8">
             @Html.DisplayFor(model => model.Estado)
         </div>
-    </div>
+    </div>*@
 </div>
         @*<p>
             @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
         </p>*@
+<script type="text/javascript">
 
+    cargolaboral.closeModal = function () {
+        //Cuando salgo del modal sin guardar, abajo hacemos que se libere el modal
+        @*if (!cargolaboral.recordInUse)
+            cargolaboral.removeCargolaboral("@Model.Id");*@
+    }
+</script>

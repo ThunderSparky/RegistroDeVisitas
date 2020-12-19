@@ -1,7 +1,7 @@
 ﻿@model Visitas.Models.Visitantes
 
 <center>
-<h2 class="marron">Detalles</h2>
+    <h2 class="marron">Detalles</h2>
 </center>
 
 <div class="form-horizontal">
@@ -17,7 +17,7 @@
             @Html.DisplayFor(model => model.No_Visitante)
         </div>
     </div>
-    
+
     <div class="form-group">
         <div class="col-md-4">
             <strong>
@@ -28,7 +28,7 @@
             @Html.DisplayFor(model => model.Ap_Paterno_Visitante)
         </div>
     </div>
-    
+
     <div class="form-group">
         <div class="col-md-4">
             <strong>
@@ -39,7 +39,7 @@
             @Html.DisplayFor(model => model.Ap_Materno_Visitante)
         </div>
     </div>
-    
+
     <div class="form-group">
         <div class="col-md-4">
             <strong>
@@ -50,7 +50,7 @@
             @Html.DisplayFor(model => model.Tipo_Documento)
         </div>
     </div>
-    
+
     <div class="form-group">
         <div class="col-md-4">
             <strong>
@@ -61,18 +61,18 @@
             @Html.DisplayFor(model => model.Nu_Documento)
         </div>
     </div>
-    
-    <div class="form-group">
-        <div class="col-md-4">
-            <strong>
-                @Html.DisplayNameFor(model => model.Imagen)
-            </strong>
-        </div>
-        <div class="col-md-8">
-            @Html.DisplayFor(model => model.Imagen)
-        </div>
-    </div>
-    
+
+    @*<div class="form-group">
+            <div class="col-md-4">
+                <strong>
+                    @Html.DisplayNameFor(model => model.Imagen)
+                </strong>
+            </div>
+            <div class="col-md-8">
+                @Html.DisplayFor(model => model.Imagen)
+            </div>
+        </div>*@
+
     <div class="form-group">
         <div class="col-md-4">
             <strong>
@@ -85,3 +85,11 @@
     </div>
 </div>
 
+<script type="text/javascript">
+
+        visitante.closeModal = function () {
+        //Cuando salgo del modal sin guardar, abajo hacemos que se libere el modal
+        @*if (!visitante.recordInUse)
+            visitante.removeVisitante("@Model.Id");*@
+        }
+</script>

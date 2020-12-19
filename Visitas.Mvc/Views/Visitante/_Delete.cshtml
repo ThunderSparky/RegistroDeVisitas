@@ -102,5 +102,10 @@
 <script type="text/javascript">
     $(function () {
         $.validator.unobtrusive.parse("#deleteForm");//(dentro del parentesis va el id que hemos colocado al inicio)
-    })
+    });
+    visitante.closeModal = function () {
+        //Cuando salgo del modal sin guardar, abajo hacemos que se libere el modal
+        @*if (!visitante.recordInUse)
+            visitante.removeVisitante("@Model.Id");*@
+        }
 </script>
