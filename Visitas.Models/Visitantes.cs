@@ -23,7 +23,9 @@ namespace Visitas.Models
         [Display(Name = "Número de Documento")]
         public string Nu_Documento { get; set; }
         public string Imagen { get; set; }
-        [Display(Name = "Código de Instituto")]
+        [Display(Name = "Entidad")]
         public int InstitutoId { get; set; }
+        [Display(Name = "Estado")]
+        public string Estado { get; set; }
     }
 }

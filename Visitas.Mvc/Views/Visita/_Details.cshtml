@@ -14,7 +14,7 @@
             </strong>
         </div>
         <div class="col-md-8">
-            @Html.DisplayFor(model => model.Fe_Registro)
+            @Convert.ToString(string.Format("{0:dd/MM/yyyy}", Model.Fe_Registro))
         </div>
     </div>
     

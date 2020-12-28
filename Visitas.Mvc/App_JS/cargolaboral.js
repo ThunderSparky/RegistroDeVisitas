@@ -22,6 +22,7 @@
     function successReload(option) {
         visitas.closeModal(option); //Aquí cerramos el modal, llamamos al JS que se llama visitas y ejecutamos el metodo closeModal
         //alert("Todo bien");
+        alertUpdate(); //metodo hub
     }
 
     //Funcion Init
@@ -72,6 +73,7 @@
     function connectToHub() {
         cargolaboral.hub = $.connection.cargolaboralHub;
         cargolaboral.hub.client.cargolaboralStatus = cargolaboralStatus;
+        cargolaboral.hub.client.updateGrid = updateGrid;
     }
 
     function cargolaboralStatus(cargolaboralIds) {
@@ -85,6 +87,17 @@
         if (cargolaboral.recordInUse)
             $('#inUse').removeClass('hidden');
         $('#btn-save').html("");
+    }
+    //2 funciones para la actualización de la grilla cuando ocurra una creación
+    function alertUpdate() {
+        cargolaboral.hub.server.alertUpdate();
+    }
+    function updateGrid() {
+        //Lógica para listar
+
+        elements = document.getElementsByClassName('active'); // elementos <i>
+        activePage = elements[0].children;
+        getCargolaboral(activePage[0].text);
     }
 
 })(window.cargolaboral = window.cargolaboral || {})

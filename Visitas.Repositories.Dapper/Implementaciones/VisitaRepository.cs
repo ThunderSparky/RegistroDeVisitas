@@ -35,7 +35,7 @@ namespace Visitas.Repositories.Dapper.Implementaciones
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                return connection.ExecuteScalar<int>("SELECT COUNT(*) FROM dbo.Visitass");
+                return connection.ExecuteScalar<int>("SELECT COUNT(*) FROM dbo.Visitass  Where No_Estado = '1'");
             }
         }
         public List<Visitass> GetByFecha(string fechainicio, string fechafin)

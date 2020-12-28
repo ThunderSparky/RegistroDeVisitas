@@ -29,9 +29,9 @@ namespace Visitas.Models
         public string Imagen { get; set; }
         [Display(Name = "Estado")]
         public string Estado { get; set; }
-        [Display(Name = "Código de Oficina")]
+        [Display(Name = "Oficina")]
         public int OficinaId { get; set; }
-        [Display(Name = "Código de Cargo Laboral")]
+        [Display(Name = "Cargo Laboral")]
         public int CargoLaboralId { get; set; }
     }
 }

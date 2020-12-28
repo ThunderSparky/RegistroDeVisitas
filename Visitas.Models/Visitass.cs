@@ -30,9 +30,9 @@ namespace Visitas.Models
         public string Motivo { get; set; }
         [Display(Name = "Estado")]
         public string No_Estado { get; set; }
-        [Display(Name = "Código de Visitante")]
+        [Display(Name = "Visitante")]
         public int VisitanteId { get; set; }
-        [Display(Name = "Código de Trabajador")]
+        [Display(Name = "Trabajador")]
         public int TrabajadorId { get; set; }
     }
 }

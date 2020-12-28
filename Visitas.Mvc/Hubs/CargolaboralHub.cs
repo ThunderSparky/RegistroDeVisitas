@@ -31,5 +31,9 @@ namespace Visitas.Mvc.Hubs
         {
             Clients.All.getMessage(message);
         }
+        public void AlertUpdate()
+        {
+            Clients.All.updateGrid();
+        }
     }
 }

@@ -25,8 +25,16 @@ namespace Visitas.Mvc.Controllers
         public PartialViewResult Create()
         {
             ViewBag.Estado = new List<Estado>() { new Estado() { Id = "1", Nombre = "Activo" }, new Estado() { Id = "0", Nombre = "Inactivo" } };
-            ViewBag.Visitante = _unit.Visitantes.GetList(); //Para traer la lista de los visitantes
-            ViewBag.Trabajador = _unit.Trabajadores.GetList(); //Para traer la lista de los trabajadores
+            ViewBag.Visitante = _unit.Visitantes.GetList().OrderBy(s => s.No_Visitante).Select(p => new SelectListItem
+            {
+                Text = p.No_Visitante + " " + p.Ap_Paterno_Visitante + " " + p.Ap_Materno_Visitante,
+                Value = p.Id.ToString()
+            }); //Para traer la lista de los visitantes
+            ViewBag.Trabajador = _unit.Trabajadores.GetList().OrderBy(s => s.No_Trabajador).Select(p => new SelectListItem
+            {
+                Text = p.No_Trabajador + " " + p.Ap_Paterno_Trabajador + " " + p.Ap_Materno_Trabajador,
+                Value = p.Id.ToString()
+            }); //Para traer la lista de los trabajadores
             return PartialView("_Create", new Visitass());
         }
         [HttpPost]
@@ -41,8 +49,16 @@ namespace Visitas.Mvc.Controllers
         }
         public PartialViewResult Edit(int id)
         {
-            ViewBag.Visitante = _unit.Visitantes.GetList(); //Para traer la lista de los visitantes
-            ViewBag.Trabajador = _unit.Trabajadores.GetList(); //Para traer la lista de los trabajadores
+            ViewBag.Visitante = _unit.Visitantes.GetList().OrderBy(s => s.No_Visitante).Select(p => new SelectListItem
+            {
+                Text = p.No_Visitante + " " + p.Ap_Paterno_Visitante + " " + p.Ap_Materno_Visitante,
+                Value = p.Id.ToString()
+            }); //Para traer la lista de los visitantes
+            ViewBag.Trabajador = _unit.Trabajadores.GetList().OrderBy(s => s.No_Trabajador).Select(p => new SelectListItem
+            {
+                Text = p.No_Trabajador + " " + p.Ap_Paterno_Trabajador + " " + p.Ap_Materno_Trabajador,
+                Value = p.Id.ToString()
+            }); //Para traer la lista de los trabajadores
             return PartialView("_Edit", _unit.Visitass.GetById(id));
         }
         [HttpPost]
@@ -51,6 +67,27 @@ namespace Visitas.Mvc.Controllers
             if (_unit.Visitass.Update(visita)) return RedirectToAction("Index");
 
             return PartialView("_Edit", visita);
+        }
+        public PartialViewResult Edit2(int id)
+        {
+            ViewBag.Visitante = _unit.Visitantes.GetList().OrderBy(s => s.No_Visitante).Select(p => new SelectListItem
+            {
+                Text = p.No_Visitante + " " + p.Ap_Paterno_Visitante + " " + p.Ap_Materno_Visitante,
+                Value = p.Id.ToString()
+            }); //Para traer la lista de los visitantes
+            ViewBag.Trabajador = _unit.Trabajadores.GetList().OrderBy(s => s.No_Trabajador).Select(p => new SelectListItem
+            {
+                Text = p.No_Trabajador + " " + p.Ap_Paterno_Trabajador + " " + p.Ap_Materno_Trabajador,
+                Value = p.Id.ToString()
+            }); //Para traer la lista de los trabajadores
+            return PartialView("_Edit2", _unit.Visitass.GetById(id));
+        }
+        [HttpPost]
+        public ActionResult Edit2(Visitass visita)
+        {
+            if (_unit.Visitass.Update(visita)) return RedirectToAction("Index");
+
+            return PartialView("_Edit2", visita);
         }
         public PartialViewResult Delete(int id)
         {

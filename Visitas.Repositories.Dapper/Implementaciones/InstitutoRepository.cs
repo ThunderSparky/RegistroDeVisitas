@@ -35,7 +35,7 @@ namespace Visitas.Repositories.Dapper.Implementaciones
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                return connection.ExecuteScalar<int>("SELECT COUNT(*) FROM dbo.Institutos");
+                return connection.ExecuteScalar<int>("SELECT COUNT(*) FROM dbo.Institutos Where Estado = '1'");
             }
         }
         public List<Institutos> GetByName(string name)

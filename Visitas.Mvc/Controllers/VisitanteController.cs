@@ -23,7 +23,8 @@ namespace Visitas.Mvc.Controllers
         }
         public PartialViewResult Create()
         {
-            ViewBag.Instituto = _unit.Institutos.GetList(); //Para traer la lista de los institutos
+            ViewBag.Estado = new List<Estado>() { new Estado() { Id = "1", Nombre = "Activo" }, new Estado() { Id = "0", Nombre = "Inactivo" } };
+            ViewBag.Instituto = _unit.Institutos.GetList().OrderBy(s => s.No_Instituto); //Para traer la lista de los institutos
             return PartialView("_Create", new Visitantes());
         }
         [HttpPost]
@@ -38,7 +39,7 @@ namespace Visitas.Mvc.Controllers
         }
         public PartialViewResult Edit(int id)
         {
-            ViewBag.Instituto = _unit.Institutos.GetList(); //Para traer la lista de los institutos
+            ViewBag.Instituto = _unit.Institutos.GetList().OrderBy(s => s.No_Instituto); //Para traer la lista de los institutos
             return PartialView("_Edit", _unit.Visitantes.GetById(id));
         }
         [HttpPost]

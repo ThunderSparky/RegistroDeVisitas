@@ -213,6 +213,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Imagenes\Escribiendo.png" />
     <Content Include="Imagenes\objetivo.png" />
     <Content Include="Imagenes\papelera.jpg" />
     <Content Include="Scripts\bootstrap.js" />
@@ -313,6 +314,7 @@
     <Content Include="Views\Visitante\_List.cshtml" />
     <Content Include="Views\Home\Objetivos.cshtml" />
     <Content Include="Views\Visita\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Visita\_Edit2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

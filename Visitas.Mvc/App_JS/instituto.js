@@ -27,6 +27,7 @@
     function successReload(option) {
         visitas.closeModal(option); //Aquí cerramos el modal, llamamos al JS que se llama visitas y ejecutamos el metodo closeModal
         //alert("Todo bien");
+        alertUpdate(); //metodo hub
     }
 
     //Funcion Init
@@ -102,6 +103,7 @@
     function connectToHub() {
         instituto.hub = $.connection.institutoHub;
         instituto.hub.client.institutoStatus = institutoStatus;
+        instituto.hub.client.updateGrid = updateGrid;
     }
 
     function institutoStatus(institutoIds) {
@@ -116,5 +118,15 @@
             $('#inUse').removeClass('hidden');
         $('#btn-save').html("");
     }
+    //2 funciones para la actualización de la grilla cuando ocurra una creación
+    function alertUpdate() {
+        instituto.hub.server.alertUpdate();
+    }
+    function updateGrid() {
+        //Lógica para listar
 
+        elements = document.getElementsByClassName('active'); // elementos <i>
+        activePage = elements[0].children;
+        getInstituto(activePage[0].text);
+    }
 })(window.instituto = window.instituto || {})

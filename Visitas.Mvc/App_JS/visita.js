@@ -27,6 +27,7 @@
     function successReload(option) {
         visitas.closeModal(option); //Aquí cerramos el modal, llamamos al JS que se llama visitas y ejecutamos el metodo closeModal
         //alert("Todo bien");
+        alertUpdate(); //metodo hub
     }
 
     //Funcion Init
@@ -108,6 +109,7 @@
     function connectToHub() {
         visita.hub = $.connection.visitaHub;
         visita.hub.client.visitaStatus = visitaStatus;
+        visita.hub.client.updateGrid = updateGrid;
     }
 
     function visitaStatus(visitaIds) {
@@ -122,5 +124,15 @@
             $('#inUse').removeClass('hidden');
         $('#btn-save').html("");
     }
+    //2 funciones para la actualización de la grilla cuando ocurra una creación
+    function alertUpdate() {
+        visita.hub.server.alertUpdate();
+    }
+    function updateGrid() {
+        //Lógica para listar
 
+        elements = document.getElementsByClassName('active'); // elementos <i>
+        activePage = elements[0].children;
+        getVisita(activePage[0].text);
+    }
 })(window.visita = window.visita || {})

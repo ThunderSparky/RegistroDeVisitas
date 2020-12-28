@@ -24,8 +24,8 @@ namespace Visitas.Mvc.Controllers
         public PartialViewResult Create()
         {
             ViewBag.Estado = new List<Estado>() { new Estado() { Id = "1", Nombre = "Activo" }, new Estado() { Id = "0", Nombre = "Inactivo" } };
-            ViewBag.Oficinas = _unit.Oficinas.GetList(); //Para traer la lista de las oficinas
-            ViewBag.Cargolaboral = _unit.CargosLaborales.GetList(); //Para traer la lista de los cargos laborales
+            ViewBag.Oficinas = _unit.Oficinas.GetList().OrderBy(s => s.No_Oficina); //Para traer la lista de las oficinas
+            ViewBag.Cargolaboral = _unit.CargosLaborales.GetList().OrderBy(s => s.No_Cargo_Laboral); //Para traer la lista de los cargos laborales
             return PartialView("_Create", new Trabajadores());
         }
         [HttpPost]
@@ -40,8 +40,8 @@ namespace Visitas.Mvc.Controllers
         }
         public PartialViewResult Edit(int id)
         {
-            ViewBag.Oficinas = _unit.Oficinas.GetList(); //Para traer la lista de las oficinas
-            ViewBag.Cargolaboral = _unit.CargosLaborales.GetList(); //Para traer la lista de los cargos laborales
+            ViewBag.Oficinas = _unit.Oficinas.GetList().OrderBy(s => s.No_Oficina); //Para traer la lista de las oficinas
+            ViewBag.Cargolaboral = _unit.CargosLaborales.GetList().OrderBy(s => s.No_Cargo_Laboral); //Para traer la lista de los cargos laborales
             return PartialView("_Edit", _unit.Trabajadores.GetById(id));
         }
         [HttpPost]
